@@ -26,7 +26,7 @@ def make_polygon_func(center_x,center_y,i):
     def make_rectangle(params,n_points = 16):
         wg_width = 0.5e-6
         #print(params)
-        width = (params[i] + 1)*0.035e-6
+        width = (params[i]*1000000 + 1)*0.035e-6
         points_x = np.array([center_x - width/2, center_x + width/2, center_x + width/2 , center_x - width/2])
         points_y = np.array([center_y - wg_width/2 , center_y - wg_width/2 ,  center_y + wg_width/2 , center_y + wg_width/2])
         polygon_points = np.array([(x, y) for x, y in zip(points_x, points_y)])
@@ -55,7 +55,7 @@ fom_1550 = ModeMatch(monitor_name = 'fom', mode_number = 1, direction = 'Forward
 
 ######## DEFINE OPTIMIZATION ALGORITHM ########
 #For the optimizer, they should all be set the same, but different objects. Eventually this will be improved
-optimizer_1550 = GLOptimizer(max_iter = 10, method = 'L-BFGS-B', scaling_factor = 1, pgtol = 1e-9)
+optimizer_1550 = GLOptimizer(max_iter = 10, method = 'L-BFGS-B', scaling_factor = 1e-6, pgtol = 1e-9)
 
 ######## PUT EVERYTHING TOGETHER ########
 opt_1550 = Optimization(base_script = script_1550, wavelengths = wavelengths_1550, fom = fom_1550, geometry = Polygon_Series, optimizer = optimizer_1550, hide_fdtd_cad = False, use_deps = True)

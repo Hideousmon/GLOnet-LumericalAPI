@@ -28,3 +28,4 @@ Adjointtest.py
 /results/model
 /results/outputs
 /results/history.mat
+/results/net*

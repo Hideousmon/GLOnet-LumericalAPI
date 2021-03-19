@@ -54,7 +54,7 @@ class GLOptimizer(Minimizer):
 
         print('GLOnet can Start Here!!!!!!!!!!!!!!!!!!!!!!!!!!')
         output_dir = 'E:\\LAB\\Project GLOnet-LumeircalAPI\\GLOnet-LumericalAPI\\results'
-        restore_from = 'E:\\LAB\\Project GLOnet-LumeircalAPI\\GLOnet-LumericalAPI\\results\\model\\iter11\\model.pth.tar'
+        restore_from = None
 
         json_path = os.path.join(output_dir, 'Params.json')
         assert os.path.isfile(json_path), "No json file found at {}".format(json_path)
@@ -75,6 +75,9 @@ class GLOptimizer(Minimizer):
         os.makedirs(output_dir + '/figures/deviceSamples', exist_ok=True)
 
         generator = Generator(params)
+        ## save model
+        #torch.save(generator,output_dir+'/net.pth')
+
         if params.cuda:
             generator.cuda()
 
